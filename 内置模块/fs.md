@@ -58,7 +58,7 @@ fs.readFile('./2018/2/123.txt', 'utf8', (err, data) => {
 #### fs.writeFile(file, data, {options}, callback)
 该方法第三个参数`options可选，默认值为{encoding: 'utf8', mode: 0o666, flag: 'w'}`
 
-如果文件不存在则会创建文件，注意`不能创建目录`
+如果文件不存在则会创建文件，注意`不能创建目录`，data可以是字符串或Buffer。
 ```javascript
 fs.writeFile('./2018/2/123.txt', 'hello world', err => {
     if(err) throw err;
@@ -72,6 +72,29 @@ fs.writeFile('./2018/2/123.txt', 'hello world', {flag: 'a'}, err => {
     console.log('写入成功');    // 此时文件内容：hello worldhello world
 })
 ```
+
+## 追加文件内容
+#### fs.appendFile(path, data, {options}, callback)
+该方法第三个参数`options可选，默认值为{encoding: 'utf8', mode: 0o666, flag: 'a'}`
+
+该方法跟fs.writeFile()设置{flag: 'a'}效果相同。如果文件不存在则会创建文件，注意`不能创建目录`，data可以是字符串或Buffer。
+```javascript
+fs.appendFile('./2018/2/123.txt', '这是appendFile', err => {
+    if(err) throw err;
+    console.log('内容追加成功')    // 此时文件内容：hello world这是appendFile
+})
+```
+
+## 创建目录
+#### fs.mkdir(path, {options}, callback)
+该方法第二个参数`options可选，不过好像用处不大，默认就行`
+```javascript
+fs.mkdir('./2018/2/2333', err => {
+    if(err) throw err;
+    console.log('创建目录成功')
+});
+```
+该方法只能创建一级目录不能创建多级目录，可自行递归创建多级目录[我csdn博客的文章](https://blog.csdn.net/samfung09/article/details/80906577)
 
 ## 读取目录下的文件
 #### fs.readdir(path, {options}, callback)
@@ -104,3 +127,29 @@ fs.stat('./2018/2/bbb.txt', (err, stats) => {
 })
 ```
 不过一般在项目中不会这样写，会用promise将每个方法封装起来
+
+## 文件重命名
+#### fs.rename(oldPath, newPath, callback)
+把文件oldPath重命名为newPath。如果newPath已存在，则覆盖它。
+```javascript
+fs.rename('./2018/2/旧文件.txt', './2018/2/新文件.txt', err => {
+    if(err) throw err;
+    console.log('已完成重命名');
+});
+```
+剪切文件
+```javascript
+fs.rename('./2018/2/旧文件.txt', './2018/2/33/新文件.txt', err => {
+    if(err) throw err;
+    console.log('文件剪切成功');    //此时./2018/2目录下已经没有 旧文件.txt，而被剪切到了./2018/2/33目录下，并且重名民为 新文件.txt
+});
+```
+
+## 删除目录
+#### fs.rmdir(path, callback)
+```javascript
+fs.rmdir('./2018/2/2333', err => {
+    if(err) throw err;
+    console.log('删除目录成功')
+})
+```

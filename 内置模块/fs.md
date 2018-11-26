@@ -37,7 +37,7 @@ fs.stat('./2018/2/123.txt', (err, stats) => {
 
 ## 读取文件内容
 #### fs.readFile(path, {options}, callback)
-该方法适合读取体积较小的文件，其中第二个参数`options可选，默认为{encoding: null, flag: 'r'}`
+该方法适合读取体积较小的文件，其中第二个参数`options可选，默认值为{encoding: null, flag: 'r'}`
 
 如果未指定字符编码，则返回原始的 buffer，如果要想得到字符串还需调用toString方法进行装换
 ```javascript
@@ -56,17 +56,51 @@ fs.readFile('./2018/2/123.txt', 'utf8', (err, data) => {
 
 ## 文件写入
 #### fs.writeFile(file, data, {options}, callback)
-该方法第三个参数`options可选，默认为{encoding: 'utf8', mode: 0o666, flag: 'w'}`
+该方法第三个参数`options可选，默认值为{encoding: 'utf8', mode: 0o666, flag: 'w'}`
+
+如果文件不存在则会创建文件，注意`不能创建目录`
 ```javascript
 fs.writeFile('./2018/2/123.txt', 'hello world', err => {
     if(err) throw err;
-    console.log('写入成功');    //  此时文件内容：hello world
+    console.log('写入成功');    // 此时文件内容：hello world
 })
 ```
 后面追加内容
 ```javascript
 fs.writeFile('./2018/2/123.txt', 'hello world', {flag: 'a'}, err => {
     if(err) throw err;
-    console.log('写入成功');    //  此时文件内容：hello worldhello world
+    console.log('写入成功');    // 此时文件内容：hello worldhello world
 })
 ```
+
+## 读取目录下的文件
+#### fs.readdir(path, {options}, callback)
+该方法第二个参数`options可选，默认值为{encoding: 'utf8', withFileTypes: false}`
+```javascript
+fs.readdir('./2018/2', (err, files) => {
+    if(err) throw err;
+    console.log(files)    // [ '123.txt', '3.jpg' ]
+})
+```
+
+## 删除文件
+#### fs.unlink(path, callback)
+```javascript
+fs.unlink('./2018/2/bbb.txt', err => {
+    if(err) throw err;
+    console.log('文件删除成功')
+})
+```
+与fs.stat()配合判断文件是否存在，存在则删除
+```javascript
+fs.stat('./2018/2/bbb.txt', (err, stats) => {
+    if(err) throw err;
+    if(stats.isFile()){
+        fs.unlink('./2018/2/bbb.txt', err => {
+            if(err) throw err;
+            console.log('文件删除成功')
+        })
+    }
+})
+```
+不过一般在项目中不会这样写，会用promise将每个方法封装起来

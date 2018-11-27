@@ -1,5 +1,16 @@
 ## 目录
+* [判断文件是否存在](#user-content-判断文件是否存在)
+* [读取文件状态](#user-content-读取文件状态)
+* [读取文件内容](#user-content-读取文件内容)
 * [文件写入](#user-content-文件写入)
+* [追加文件内容](#user-content-追加文件内容)
+* [创建目录](#user-content-创建目录)
+* [读取目录下的文件](#user-content-读取目录下的文件)
+* [删除文件](#user-content-删除文件)
+* [文件重命名](#user-content-文件重命名)
+* [删除目录](#user-content-删除目录)
+
+&nbsp;
 
 首先不用说第一步就是引入模块
 ```javascript

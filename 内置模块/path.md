@@ -1,6 +1,7 @@
 ## 目录
 * [路径组合](#user-content-路径组合)
 * [路径解析](#user-content-路径解析)
+* [获取相对路径](#user-content-获取相对路径)
 
 &nbsp;
 
@@ -76,4 +77,12 @@ path.extname('index');
 // 返回: ''
 path.extname('.index');
 // 返回: ''
+```
+
+## 获取相对路径
+#### path.relative(from, to)
+`第一个参数是参照物路径（一般是当前路径），第二个参数是要知道的路径`
+```javascript
+path.relative('/data/orandea/test/aaa', '/data/orandea/impl/bbb');
+// 返回: '../../impl/bbb'
 ```

@@ -1,3 +1,6 @@
+## 目录
+* [文件写入](#user-content-文件写入)
+
 首先不用说第一步就是引入模块
 ```javascript
 const fs = require('fs');

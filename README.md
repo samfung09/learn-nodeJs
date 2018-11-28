@@ -4,3 +4,4 @@
 * 内置模块
   * [fs-文件系统](内置模块/fs.md)
   * [path-路径](内置模块/path.md)
+  * [buffer-缓冲区](内置模块/buffer.md)

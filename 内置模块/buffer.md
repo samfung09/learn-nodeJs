@@ -1,6 +1,6 @@
 ## 目录
 * [构建与转换](#user-content-构建与转换)
-* [Buffer的拼接](#user-content-Buffer的拼接)
+* [Buffer的拼接](#user-content-buffer的拼接)
 
 &nbsp;
 

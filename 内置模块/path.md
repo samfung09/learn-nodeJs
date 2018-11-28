@@ -51,7 +51,7 @@ path.parse(filepath)
     name: '3'       // 文件名
 }
 ```
-#### path.basename(path, <ext>) 获取路径最后一部分
+#### path.basename(path, ext) 获取路径最后一部分
 该方法`第二个参数ext为文件扩展名，可选`
 ```javascript
 path.basename('/foo/bar/baz/asdf/quux.html');
